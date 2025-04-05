@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
     <a class="navbar-brand" href="#">InsurancePro</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -6,21 +6,60 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Reviews</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">FAQs</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#reviewCarousel">Reviews</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+        <button class="btn btn-primary">Login</button>
       </ul>
     </div>
   </div>
 </nav>
+ -->
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <div class="container">
+      <a class="navbar-brand" href="#">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0Z" fill="#2a8d8d"/>
+              <path d="M30 15C30 21.075 25.523 26 20 26C14.477 26 10 21.075 10 15C10 8.925 14.477 4 20 4C25.523 4 30 8.925 30 15Z" fill="#f9d56e"/>
+              <path d="M27 17.5C27 22.194 23.866 26 20 26C16.134 26 13 22.194 13 17.5C13 12.806 16.134 9 20 9C23.866 9 27 12.806 27 17.5Z" fill="#2a8d8d"/>
+          </svg>
+          ShieldPro
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#solutions">Solutions</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#industries">Industries</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#resources">Resources</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#pricing">Pricing</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#about">About Us</a>
+              </li>
+          </ul>
+          <div class="d-flex">
+              <a routerLink="/login" class="btn btn-login">Log In</a>
+              <a routerLink="/signup" class="btn btn-signup">Sign Up</a>
+          </div>
+      </div>
+  </div>
+</nav>
 
 
-
-
-
-<div class="container mt-4">
+<div class="container mt-4" id="home">
   <div class="row align-items-center banner">
     <!-- Left Side: Catchy Quote -->
     <div class="col-md-6">
@@ -35,19 +74,7 @@
   </div>
 </div>
 
-
-<!-- Hover-effect Cards -->
-<!-- <div class="container mt-5">
-  <div class="row">
-    <div class="col-md-4" *ngFor="let card of cards">
-      <div class="card shadow-lg text-center p-3 hover-effect">
-        <h4>{{ card.name }}</h4>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="container mt-4">
+<!-- <div class="container mt-4" id="services">
   <div class="row">
     <div class="col-md-4 mb-4" *ngFor="let card of cards">
       <div class="card text-center shadow-sm">
@@ -61,36 +88,38 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+<div class="container mt-4" id="services">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let card of cards">
+      <div class="card text-center shadow-sm position-relative"
+           (mouseover)="hoveredCard = card.title"
+           (mouseleave)="hoveredCard = ''"
+           (click)="navigateToQuote(card.title)"
+           style="cursor: pointer;">
+        <div class="card-header">
+          {{ card.label }}
+        </div>
+        <div class="card-body">
+          <img [src]="card.image" alt="{{ card.title }}" class="card-img-top">
+          <h5 class="card-title mt-2">{{ card.title }}</h5>
+        </div>
+        <div class="hover-overlay" *ngIf="hoveredCard === card.title">
+          Click to get a quote
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-<!-- Why Choose Us -->
-<!-- <div class="container mt-5 text-center">
-  <h2>Why Choose Us?</h2>
-  <div class="row mt-3">
-    <div class="col-md-4" *ngFor="let reason of reasons">
-      <div class="card p-3 shadow-lg hover-effect">
-        <h5>{{ reason }}</h5>
-      </div>
-    </div>
-  </div>
-</div> -->
 
-<!-- <div class="container mt-5 text-center">
-  <h2 class="mb-4">Why Choose Us?</h2>
-  <div class="row justify-content-center">
-    <div class="col-md-2 col-sm-6" *ngFor="let reason of reasons">
-      <div class="card p-3 shadow-lg border-0 text-center">
-        <img [src]="reason.image" class="img-fluid mx-auto d-block mb-3" alt="reason.title" width="80">
-        <h5 class="fw-bold">{{ reason.title }}</h5>
-        <p class="text-muted">{{ reason.subtitle }}</p>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <!-- Why Choose Us Section -->
-<div class="container mt-5 text-center">
+ 
+<div class="container mt-5 text-center" id="review">
   <h2 class="mb-4">Why Choose Us?</h2>
   <div class="row justify-content-center">
     <div class="col-md-2 col-sm-6" *ngFor="let reason of reasons">
@@ -104,22 +133,9 @@
 </div>
 
 
-<!-- Reviews Carousel -->
-<!-- <div class="container mt-5">
-  <h2 class="text-center">Our Customers</h2>
-  <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let review of reviews; let i = index" [class.active]="i === 0">
-        <div class="d-flex flex-column align-items-center p-4">
-          <img src="assets/user.png" alt="User" class="rounded-circle mb-3" width="80">
-          <p>{{ review }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
 
-<h2 class="text-center">Our Customers</h2>
+
+<h2 class="text-center" id="review">Our Customers</h2>
 <div id="reviewCarousel" class="carousel slide review-carousel" data-bs-ride="carousel">
   <!-- Indicators -->
   <div class="carousel-indicators">
@@ -193,10 +209,9 @@
   </button>
 </div>
 
-
-
 <!-- FAQ Accordion -->
-<div class="container mt-5">
+
+<div class="container mt-5" id="faqs">
   <h2 class="text-center">FAQs</h2>
   <div class="accordion mt-3" id="faqAccordion">
     <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
@@ -214,17 +229,8 @@
   </div>
 </div>
 
-<!-- Contact Section -->
-<!-- <div class="container mt-5 text-center">
-  <h2>Contact Us</h2>
-  <p>📞 Phone: +91 9876543210</p>
-  <p>🌐 Website: <a href="#">www.insurancepro.com</a></p>
-  <p>🔗 LinkedIn | Instagram | WhatsApp</p>
-  <p>© 2025 InsurancePro. All rights reserved.</p>
-</div> -->
 
-
-<footer class="bg-light text-dark pt-5 pb-4">
+<footer class="bg-light text-dark pt-5 pb-4"  id="footer">
   <div class="container text-center text-md-start">
     <div class="row">
 
@@ -250,7 +256,7 @@
       </div>
 
       <!-- Contact Section -->
-      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto">
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto" id="contacts">
         <h5 class="text-uppercase fw-bold">Contact</h5>
         <hr class="mb-4 mt-2 mx-auto" style="width: 60px; background-color: #212529; height: 2px;">
         <p><i class="fas fa-home me-2"></i> Ajmer, Rajasthan, India</p>

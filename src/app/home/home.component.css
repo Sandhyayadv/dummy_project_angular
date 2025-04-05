@@ -1,10 +1,115 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+}
 
+:root {
+  --primary-color: #2a8d8d;
+  --secondary-color: #f9d56e;
+  --accent-color: #e14658;
+  --light-bg: #f0f9f6;
+  --text-dark: #333;
+  --text-light: #666;
+}
+
+/* Navbar Styles */
+.navbar {
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: var(--text-dark);
+  font-weight: 500;
+  margin: 0 10px;
+  position: relative;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+.btn-signup {
+  background-color: var(--primary-color);
+  /* color: white; */
+  border-radius: 30px;
+  padding: 8px 25px;
+  transition: all 0.3s;
+}
+
+.btn-signup:hover {
+  color: white;
+  background-color: #236b6b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(42, 141, 141, 0.3);
+}
+
+.btn-login {
+  border: 2px solid var(--primary-color);
+  /* color: var(--primary-color); */
+  color: white;
+  border-radius: 30px;
+  padding: 8px 25px;
+  margin-right: 10px;
+  transition: all 0.3s;
+  background-color: #236b6b;
+}
+
+.btn-login:hover {
+  background-color: var(--primary-color);
+  /* color: white; */
+  color: black;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(45deg, var(--secondary-color), #fae8a4);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  margin-top: 76px; 
+}
+
+.hero-circle {
+  position: absolute;
+  right: -150px;
+  top: -50px;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  opacity: 0.9;
+  z-index: 1;
+}
 *{
   /* background-color: #f1e995; */
 }
 .navbar {
   /* background-color: #004080 !important; */
-  background-color: rgb(79, 2, 79) !important;
+  /* background-color: rgb(79, 2, 79) !important; */
 }
 
 .banner {
@@ -174,10 +279,11 @@
 
 
 .question{
-  background-color: rgb(79, 2, 79);
+  /* background-color: rgb(167, 230, 109); */
+  background-color: #236b6b;
 }
 .answer{
-  background-color: rgb(236, 195, 236);
+  background-color: #6ad6d6;
 }
 
 
@@ -195,4 +301,28 @@ footer .fab {
 footer .fab:hover {
   transform: scale(1.2);
   color: #f1c40f;
+}
+
+/* card */
+
+.card {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.hover-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
 }

@@ -1,0 +1,12 @@
+.btn-login {
+    background-color: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    margin-right: 10px;
+  }
+  
+  .btn-signup {
+    /* background-color: #007bff; */
+    color: white;
+  }
+  

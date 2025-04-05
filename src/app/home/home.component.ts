@@ -1,14 +1,27 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';  
-
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-home',
   standalone: true,  
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule]  
+  imports: [CommonModule,LoginComponent,RouterLink]  
 })
 export class HomeComponent {
+
+  // cards = [
+  //   { title: 'Doctors', label: 'Trusted Professionals', image: '../../assets/images/doctor.png'},
+  //   { title: 'Lawyers', label: 'Expert Legal Advice', image: '../../assets/images/Lawyer.png'},
+  //   { title: 'Architects', label: 'Innovative Designs', image: '../../assets/images/architect.png' },
+  //   { title: 'Companies', label: 'Reliable Enterprises', image: '../../assets/images/company_pic.png' },
+  //   { title: 'Accountants', label: 'Financial Experts', image: '../../assets/images/acc_pic.png' },
+  //   { title: 'Consultants', label: 'Strategic Solutions', image: '../../assets/images/cons_pic.png' }
+  // ];
+
+hoveredCard: string = '';
+constructor(private router: Router) {}
   cards = [
     { title: 'Doctors', label: 'Trusted Professionals', image: '../../assets/images/doctor.png'},
     { title: 'Lawyers', label: 'Expert Legal Advice', image: '../../assets/images/Lawyer.png'},
@@ -17,6 +30,17 @@ export class HomeComponent {
     { title: 'Accountants', label: 'Financial Experts', image: '../../assets/images/acc_pic.png' },
     { title: 'Consultants', label: 'Strategic Solutions', image: '../../assets/images/cons_pic.png' }
   ];
+
+  navigateToQuote(title: string) {
+    this.router.navigate(['/quote'], { queryParams: { category: title } });
+  }
+  // navigateToQuote(title: string) {
+  //   const formattedTitle = title.toLowerCase().replace(/\s+/g, '-'); // Convert title to URL format
+  //   this.router.navigate(['/quote', formattedTitle]); // Navigate to /quote/{title}
+  // }
+
+
+
 
   // reasons = ['Best Coverage', 'Easy Claims', 'Secure & Reliable'];
 
@@ -39,11 +63,11 @@ export class HomeComponent {
   
   
 
-  reviews = [
-    'Great service and easy claims process!',
-    'Affordable plans and great customer support.',
-    'Highly recommended for hassle-free insurance!'
-  ];
+  // reviews = [
+  //   'Great service and easy claims process!',
+  //   'Affordable plans and great customer support.',
+  //   'Highly recommended for hassle-free insurance!'
+  // ];
 
 
   
@@ -62,11 +86,6 @@ export class HomeComponent {
   ];
   imagePath = 'assets/images/';
   // Adjust the path for your images as needed
-  
-
-
-
-
 
 
   // faqs = [
@@ -109,7 +128,5 @@ export class HomeComponent {
       answer: 'The cancellation policy varies based on the insurance provider. Please refer to the terms and conditions of your selected insurer.'
     }
   ];
-
-
 
 }

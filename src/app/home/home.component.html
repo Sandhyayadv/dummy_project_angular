@@ -1,22 +1,3 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container">
-    <a class="navbar-brand" href="#">InsurancePro</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#reviewCarousel">Reviews</a></li>
-        <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
-        <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
-        <button class="btn btn-primary">Login</button>
-      </ul>
-    </div>
-  </div>
-</nav>
- -->
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
@@ -35,19 +16,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="#solutions">Solutions</a>
+                  <a class="nav-link" href="#home">Home</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#industries">Industries</a>
+                  <a class="nav-link" href="#services">Services</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#resources">Resources</a>
+                  <a class="nav-link" href="#choose">Why Choose Us</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#pricing">Pricing</a>
+                  <a class="nav-link" href="#customer">Our Customers</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#about">About Us</a>
+                  <a class="nav-link" href="#faqs">FAQs</a>
               </li>
           </ul>
           <div class="d-flex">
@@ -74,22 +55,6 @@
   </div>
 </div>
 
-<!-- <div class="container mt-4" id="services">
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let card of cards">
-      <div class="card text-center shadow-sm">
-        <div class="card-header">
-          {{ card.label }}
-        </div>
-        <div class="card-body">
-          <img [src]="card.image" alt="{{ card.title }}" class="card-img-top">
-          <h5 class="card-title mt-2">{{ card.title }}</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 
 <div class="container mt-4" id="services">
   <div class="row">
@@ -106,9 +71,9 @@
           <img [src]="card.image" alt="{{ card.title }}" class="card-img-top">
           <h5 class="card-title mt-2">{{ card.title }}</h5>
         </div>
-        <div class="hover-overlay" *ngIf="hoveredCard === card.title">
+        <!-- <div class="hover-overlay" *ngIf="hoveredCard === card.title">
           Click to get a quote
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -119,7 +84,7 @@
 
 <!-- Why Choose Us Section -->
  
-<div class="container mt-5 text-center" id="review">
+<div class="container mt-5 text-center" id="choose">
   <h2 class="mb-4">Why Choose Us?</h2>
   <div class="row justify-content-center">
     <div class="col-md-2 col-sm-6" *ngFor="let reason of reasons">
@@ -135,7 +100,7 @@
 
 
 
-<h2 class="text-center" id="review">Our Customers</h2>
+<h2 class="text-center" id="customer">Our Customers</h2>
 <div id="reviewCarousel" class="carousel slide review-carousel" data-bs-ride="carousel">
   <!-- Indicators -->
   <div class="carousel-indicators">

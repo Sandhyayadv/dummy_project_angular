@@ -1,0 +1,72 @@
+<div class="container mt-4">
+    <h2>Edit Customer</h2>
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" formControlName="firstName" placeholder="Enter first name" />
+          <div *ngIf="customerForm.get('firstName')?.touched && customerForm.get('firstName')?.invalid" class="text-danger small">
+            First name is required.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName" placeholder="Enter last name" />
+          <div *ngIf="customerForm.get('lastName')?.touched && customerForm.get('lastName')?.invalid" class="text-danger small">
+            Last name is required.
+          </div>
+        </div>
+      </div>
+    
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter email" />
+        <div *ngIf="customerForm.get('email')?.touched && customerForm.get('email')?.invalid" class="text-danger small">
+          Please enter a valid email.
+        </div>
+      </div>
+    
+      <div class="mb-3">
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" formControlName="dob" />
+        <div *ngIf="customerForm.get('dob')?.touched && customerForm.get('dob')?.invalid" class="text-danger small">
+          Date of birth is required.
+        </div>
+      </div>
+    
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input type="text" class="form-control" formControlName="phone" placeholder="Enter phone number" />
+        <div *ngIf="customerForm.get('phone')?.touched && customerForm.get('phone')?.invalid" class="text-danger small">
+          Phone is required.
+        </div>
+      </div>
+    
+      <!-- Add remaining fields: pan, aadhar, address, city, pin -->
+      <div class="mb-3">
+        <label class="form-label">PAN Number</label>
+        <input type="text" class="form-control" formControlName="pan" placeholder="Enter PAN number" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Aadhar Number</label>
+        <input type="text" class="form-control" formControlName="aadhar" placeholder="Enter Aadhar number" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+        <input type="text" class="form-control" formControlName="address" placeholder="Enter address" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">City</label>
+        <input type="text" class="form-control" formControlName="city" placeholder="Enter city" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Pin Code</label>
+        <input type="text" class="form-control" formControlName="pin" placeholder="Enter pin code" />
+      </div>
+    
+      <!-- <button class="btn btn-sm btn-light" [routerLink]="['/editCustomer', customer.id]">Edit</button> -->
+
+      <button type="submit" class="btn btn-primary">Update Customer</button>
+    </form>
+  </div>
+  

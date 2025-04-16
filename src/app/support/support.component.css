@@ -1,0 +1,25 @@
+.support-container {
+    background: #f9fcff;
+    border-radius: 10px;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .category-card {
+    width: 180px;
+  }
+  
+  .category-card h6 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .category-card a {
+    font-size: 0.875rem;
+    color: #007bff;
+    text-decoration: none;
+  }
+  

@@ -1,0 +1,152 @@
+<!-- Navbar -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+    <a class="navbar-brand fw-bold text-white" href="#">Med<span class="text-info">Shield</span> Pro</a>
+  
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNav"> -->
+      <!-- Left Menu Items -->
+      <!-- <ul class="navbar-nav me-auto ms-4">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Clients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Submissions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Quotes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Policies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Claims</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reports</a>
+        </li>
+      </ul> -->
+  
+      <!-- Right Profile Section -->
+      <!-- <div class="d-flex align-items-center">
+        <span class="text-white me-2">John Doe</span>
+        <div class="rounded-circle bg-white text-primary fw-bold d-flex align-items-center justify-content-center"
+             style="width: 36px; height: 36px;">
+          JD
+        </div>
+      </div>
+    </div>
+  </nav> -->
+  
+
+<div class="container-fluid bg-light min-vh-100 p-4">
+    <div class="bg-white rounded shadow p-4">
+      <h4 class="fw-bold mb-3">Broker Dashboard</h4>
+  
+      <!-- Welcome -->
+      <div class="alert alert-primary" role="alert">
+        <strong>Welcome back, {{brokerName}}!</strong><br>
+        You have <strong>12 policies</strong> expiring in the next 30 days and <strong>5 new quotes</strong> awaiting review.
+      </div>
+  
+      <!-- Summary Cards -->
+      <div class="row text-center mb-4">
+        <div class="col-md-3 mb-3">
+          <div class="border rounded p-3 bg-white">
+            <h2 class="text-primary mb-0">247</h2>
+            <div class="text-muted">Active Clients</div>
+            <div class="text-success small">+12 since last month</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="border rounded p-3 bg-white">
+            <h2 class="text-warning mb-0">18</h2>
+            <div class="text-muted">Pending Submissions</div>
+            <div class="text-danger small">5 require attention</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="border rounded p-3 bg-white">
+            <h2 class="text-success mb-0">312</h2>
+            <div class="text-muted">Active Policies</div>
+            <div class="small text-secondary">$4.2M annual premium</div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="border rounded p-3 bg-white">
+            <h2 class="text-danger mb-0">8</h2>
+            <div class="text-muted">Open Claims</div>
+            <div class="small text-secondary">2 reported this month</div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Middle Section -->
+      <div class="row">
+        <!-- Policies Expiring -->
+        <div class="col-md-6 mb-4">
+          <div class="bg-white p-3 border rounded shadow-sm">
+            <h6 class="fw-semibold">Policies Expiring Soon</h6>
+            <table class="table table-sm table-borderless align-middle mt-3">
+              <thead class="border-bottom">
+                <tr class="text-muted">
+                  <th>Client Name</th>
+                  <th>Specialty</th>
+                  <th>Expiration</th>
+                  <th>Premium</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let policy of policies">
+                  <td>{{ policy.name }}</td>
+                  <td>{{ policy.specialty }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="policy.daysClass">{{ policy.days }} days</span>
+                  </td>
+                  <td>{{ policy.premium }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-primary">Renew</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="#" class="text-primary small float-end">View All →</a>
+          </div>
+        </div>
+  
+        <!-- Recent Activity -->
+        <div class="col-md-6 mb-4">
+          <div class="bg-white p-3 border rounded shadow-sm">
+            <h6 class="fw-semibold">Recent Activity</h6>
+            <div *ngFor="let activity of activities" class="d-flex align-items-start mt-3">
+              <div class="rounded-circle text-white d-flex align-items-center justify-content-center me-3" 
+                   [ngClass]="activity.badgeClass"
+                   style="width: 36px; height: 36px;">
+                {{ activity.initial }}
+              </div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold">{{ activity.title }}</div>
+                <div class="text-muted small">{{ activity.description }}</div>
+              </div>
+              <div class="text-muted small ms-2">{{ activity.time }}</div>
+            </div>
+            <a href="#" class="text-primary small float-end mt-2">View All →</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Bottom Buttons -->
+      <div class="mt-4 d-flex gap-2">
+        <button class="btn btn-primary">New Submission</button>
+        <button class="btn btn-outline-primary">Add New Client</button>
+        <button class="btn btn-light border">Market Updates</button>
+      </div>
+    </div>
+  </div>
+  

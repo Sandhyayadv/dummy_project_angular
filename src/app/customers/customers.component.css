@@ -1,0 +1,17 @@
+.filters select,
+.filters input {
+  min-width: 200px;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.card {
+  border: 1px solid #e0e0e0;
+}
+
+.card-footer button {
+  width: 30%;
+}

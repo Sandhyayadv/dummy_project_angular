@@ -1,0 +1,48 @@
+ 
+
+<!-- Navbar is only visible here -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4 sticky-top">
+    <a class="navbar-brand fw-bold text-white" href="#">Med<span class="text-info">Shield</span> Pro</a>
+ 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Left Menu Items -->
+      <ul class="navbar-nav me-auto ms-4">
+        <li class="nav-item"><a class="nav-link active" routerLink="/dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/createCustomer">Create Customer</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/quoteCreation">Get a Quote</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/viewAllQuotes">View All Quotes</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/customer">Our Customers</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/policyCreation">Policies</a></li>
+
+        <li class="nav-item"><a class="nav-link" routerLink="/report">Reports</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/support">Help & Support</a></li>
+      </ul>
+  
+      <!-- Right Profile Section -->
+      <!-- <div class="d-flex align-items-center">
+        <span class="text-white me-2">John Doe</span>
+        <div class="rounded-circle bg-white text-primary fw-bold d-flex align-items-center justify-content-center"
+             style="width: 36px; height: 36px;">JD</div>
+      </div> -->
+
+      <div class="d-flex align-items-center">
+        <span class="text-white me-2">{{ brokerName }}</span>
+        <div class="rounded-circle bg-white text-primary fw-bold d-flex align-items-center justify-content-center"
+             style="width: 36px; height: 36px;">
+          {{ brokerName[0] }}{{ brokerName.split(' ')[1]?.[0] || '' }} <!-- Initials -->
+        </div>
+      </div>
+      
+
+    </div>
+  </nav>
+  
+  <!-- Routed page content below the navbar -->
+  <div class="main-content p-4">
+    <router-outlet></router-outlet>
+  </div>
+  

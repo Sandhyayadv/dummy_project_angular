@@ -1,14 +1,24 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';  
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+// import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-home',
   standalone: true,  
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule,LoginComponent,RouterLink]  
+  imports: [CommonModule,RouterLink,FormsModule, ReactiveFormsModule]  
 })
+
+// @Component({
+//   selector: 'app-register',
+//   standalone: true, // ✅ Add this if it's a standalone component
+//   templateUrl: './register.component.html',
+//   styleUrls: ['./register.component.css'],
+//   imports: [CommonModule, FormsModule, ReactiveFormsModule] // ✅ Keep only modules here
+// })
+
 export class HomeComponent {
 
   // cards = [

@@ -1,0 +1,99 @@
+<div class="container mt-4">
+    <h2>Reports & Analytics</h2>
+    <p class="text-muted">Monitor your business performance and track key metrics</p>
+  
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item"><a class="nav-link active">Overview</a></li>
+      <li class="nav-item"><a class="nav-link">Sales</a></li>
+      <li class="nav-item"><a class="nav-link">Policies</a></li>
+      <li class="nav-item"><a class="nav-link">Customers</a></li>
+      <li class="nav-item"><a class="nav-link">Claims</a></li>
+      <li class="nav-item"><a class="nav-link">Custom Reports</a></li>
+    </ul>
+  
+    <div class="d-flex gap-3 align-items-center mb-3">
+      <select class="form-select w-auto" [(ngModel)]="selectedTimePeriod">
+        <option>This Month</option>
+        <option>Last Month</option>
+        <option>This Quarter</option>
+      </select>
+      <select class="form-select w-auto" [(ngModel)]="selectedPolicyType">
+        <option>All Types</option>
+        <option>Professional Liability</option>
+        <option>Cyber Liability</option>
+      </select>
+      <button class="btn btn-primary">📊 Generate Report</button>
+    </div>
+  
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <span>Total Revenue</span>
+            <span class="text-success">+12%</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">$248,750</h3>
+            <p class="text-muted">This quarter vs. last quarter</p>
+            <canvas baseChart
+                    [data]="revenueChartData"
+                    [options]="revenueChartOptions"
+                    chartType="line">
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <span>New Policies</span>
+            <span class="text-success">+8%</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">42</h3>
+            <p class="text-muted">This quarter vs. last quarter</p>
+            <canvas baseChart
+                    [data]="policiesChartData"
+                    [options]="policiesChartOptions"
+                    chartType="bar">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-header d-flex justify-content-between">
+        <strong>Top Performing Insurance Products</strong>
+        <div>
+          <button class="btn btn-sm btn-outline-secondary me-2">Export CSV</button>
+          <button class="btn btn-sm btn-outline-secondary">Print</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Rank</th>
+              <th>Policy Type</th>
+              <th>New Policies</th>
+              <th>Revenue</th>
+              <th>Average Premium</th>
+              <th>Growth Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of topProducts">
+              <td>{{ product.rank }}</td>
+              <td>{{ product.type }}</td>
+              <td>{{ product.policies }}</td>
+              <td>{{ product.revenue }}</td>
+              <td>{{ product.premium }}</td>
+              <td>{{ product.growth }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

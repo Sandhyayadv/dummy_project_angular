@@ -1,26 +1,27 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
+
+
+
+
+
+   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4 shadow-lg" style="width: 350px;">
       <h3 class="text-center">Insurance Broker Portal</h3>
-      <form>
+      <form (ngSubmit)="onSubmit()">
         <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Username or Email" required>
+          <input [(ngModel)]="email" name="email" type="text" class="form-control" placeholder="Username or Email" required>
         </div>
         <div class="mb-3">
-          <input type="password" class="form-control" placeholder="Password" required>
-        </div>
-        <div class="form-check mb-3">
-          <input type="checkbox" class="form-check-input" id="rememberMe">
-          <label class="form-check-label" for="rememberMe">Remember me</label>
+          <input [(ngModel)]="password" name="password" type="password" class="form-control" placeholder="Password" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Login</button>
         <div class="text-center mt-2">
           <a href="#" class="text-primary">Forgot Password?</a>
         </div>
       </form>
+      <div *ngIf="error" class="text-danger mt-2 text-center">{{ error }}</div>
       <hr>
       <div class="text-center">
-        <p>New Broker? Register to access the portal</p>
-        <button class="btn btn-success w-100">Register</button>
+        <p>New Broker? <a href="signup">Register</a> to access the portal</p>
       </div>
     </div>
   </div>

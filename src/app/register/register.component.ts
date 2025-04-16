@@ -1,34 +1,28 @@
-// import { Component } from '@angular/core';
 
-// @Component({
-//   selector: 'app-register',
-//   imports: [],
-//   templateUrl: './register.component.html',
-//   styleUrl: './register.component.css'
-// })
-// export class RegisterComponent {
-
-// }
-
-
+import { Router } from '@angular/router'; 
+import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  standalone:true,
-  imports:[FormsModule,CommonModule]
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, HttpClientModule],
+  standalone: true
 })
 export class RegisterComponent {
   user = {
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: ''
   };
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
     if (this.user.password !== this.user.confirmPassword) {
@@ -36,8 +30,15 @@ export class RegisterComponent {
       return;
     }
 
-    console.log('User Registered:', this.user);
-    alert('Registration Successful!');
+    this.authService.register(this.user).subscribe(
+      (response) => {
+        alert('Registration successful!');
+        this.router.navigate(['/login']);  // Redirect to login page after success
+      },
+      (error) => {
+        console.error('Registration error:', error);
+        alert('Registration failed. Please try again.');
+      }
+    );
   }
 }
-

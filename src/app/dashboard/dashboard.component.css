@@ -1,0 +1,12 @@
+.dashboard-wrapper {
+    background-color: #f1f5f9;
+    min-height: 100vh;
+  }
+  .bg-purple {
+    background-color: #6f42c1 !important;
+  }
+  .navbar .nav-link.active {
+    font-weight: bold;
+    border-bottom: 2px solid #fff;
+  }
+  

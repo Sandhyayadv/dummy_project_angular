@@ -1,0 +1,108 @@
+
+  <div class="container mt-4">
+    <h2>Customers</h2>
+    <p>Manage your customer database</p>
+  
+    <div class="d-flex mb-3 gap-2">
+      <input
+        class="form-control w-auto"
+        [(ngModel)]="searchTerm"
+        (input)="applyFilters()"
+        placeholder="Search by ID or Name"
+      />
+      <button class="btn btn-primary ms-auto" (click)="navigateToCreateCustomer()">+ Add New Customer</button>
+    </div>
+  
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'list'" (click)="setTab('list')">List View</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'card'" (click)="setTab('card')">Card View</a>
+      </li>
+    </ul>
+  
+    <!-- List View -->
+    <div *ngIf="activeTab === 'list'" class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of displayedCustomers">
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>{{ customer.address }}</td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-sm btn-danger" (click)="onDeleteCustomer(customer.id)">Delete</button>
+                <!-- <button class="btn btn-sm btn-light">Edit</button> -->
+                <button class="btn btn-sm btn-light" [routerLink]="['/editCustomer', customer.id]">Edit</button>
+
+                <button class="btn btn-sm btn-secondary">+ Quote</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Card View -->
+    <div *ngIf="activeTab === 'card'" class="row g-3">
+      <div class="col-md-4" *ngFor="let customer of displayedCustomers">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <!-- Using consolidated 'name' property if available; otherwise fallback -->
+            <h5 class="card-title">{{ customer.name || (customer.firstName + ' ' + customer.lastName) }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Doctor</h6>
+            <p class="card-text">
+              <strong>Email:</strong> {{ customer.email }}<br />
+              <strong>Phone:</strong> {{ customer.phone }}<br />
+              <strong>Address:</strong> {{ customer.address }}
+            </p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <button class="btn btn-sm btn-danger" (click)="onDeleteCustomer(customer.id)">Delete</button>
+            <!-- <button class="btn btn-sm btn-light">Edit</button> -->
+            <button class="btn btn-sm btn-light" [routerLink]="['/editCustomer', customer.id]">Edit</button>
+            <!-- <button class="btn btn-primary" (click)="goToQuoteCreation(customer.id)">
+              Get Quote
+            </button> -->
+            
+            <button class="btn btn-sm btn-secondary">+ Quote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Pagination -->
+    <nav *ngIf="totalPages() > 1" class="mt-4">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages()); let i = index"
+            [class.active]="i + 1 === currentPage">
+          <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages()">
+          <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+        </li>
+      </ul>
+      <p class="text-center text-muted">
+        Showing {{ ((currentPage - 1) * itemsPerPage + 1) }} -
+        {{ Math.min(currentPage * itemsPerPage, filteredCustomers.length) }}
+        of {{ filteredCustomers.length }} customers
+      </p>
+    </nav>
+  </div>
+  

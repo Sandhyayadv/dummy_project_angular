@@ -1,30 +1,49 @@
-<div class="register-container">
-    <h2>Register</h2>
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" class="form-control" [(ngModel)]="user.name" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" class="form-control" [(ngModel)]="user.email" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" [(ngModel)]="user.password" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-          [(ngModel)]="user.confirmPassword" required>
-      </div>
-  
-      <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
-    </form>
-  
-    <p class="login-link">Already have an account? <a routerLink="/login">Log in</a></p>
+
+
+
+<div class="register-container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card register-card shadow-lg p-4">
+    <div class="card-header text-center bg-primary text-white rounded-top">
+      <h4 class="mb-0">Create Your Account</h4>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" id="firstName" class="form-control" name="firstName" [(ngModel)]="user.firstName" required />
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" id="lastName" class="form-control" name="lastName" [(ngModel)]="user.lastName" required />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" class="form-control" name="email" [(ngModel)]="user.email" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" name="password" [(ngModel)]="user.password" required />
+        </div>
+
+        <div class="mb-4">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" [(ngModel)]="user.confirmPassword" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="!registerForm.form.valid">
+          Register Now
+        </button>
+      </form>
+    </div>
+
+    <div class="card-footer text-center bg-light">
+      <small>Already have an account? <a href="/login">Login here</a></small>
+    </div>
   </div>
-  
+</div>

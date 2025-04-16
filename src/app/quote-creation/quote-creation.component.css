@@ -1,0 +1,119 @@
+.stepper-tabs .nav-link {
+    cursor: pointer;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .stepper-tabs .nav-link.active {
+    background-color: #2e5aac;
+    color: #fff !important;
+    border-color: transparent;
+  }
+
+  
+  .summary-card-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    background-color: #f7f9fc;
+    padding: 40px 0;
+  }
+  
+  .summary-card {
+    background: white;
+    border-radius: 16px;
+    width: 450px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+  }
+  
+  .summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3182f6;
+    color: white;
+    padding: 16px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .summary-header h5 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .summary-header p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+  
+  .quote-id {
+    background-color: #5295ff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+  }
+  
+  .summary-body {
+    padding: 20px 0;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .total-premium {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .total-premium p {
+    margin: 0;
+    color: #555;
+  }
+  
+  .total-premium h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #111;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .summary-label {
+    color: #888;
+  }
+  
+  .summary-value {
+    font-weight: 600;
+  }
+  
+  .policy-dates {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-bottom: none;
+  }
+  
+  .save-btn {
+    background-color: #3182f6;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+  
+  .save-btn:hover {
+    background-color: #2367d1;
+  }
+  

@@ -1,0 +1,255 @@
+
+
+
+  <div class="container py-4">
+    <h2 class="fw-bold mb-4">Create New Quote</h2>
+
+  <!-- Stepper Tabs -->
+<ul class="nav nav-tabs mb-4 stepper-tabs">
+  <li class="nav-item" *ngFor="let tab of ['Personal Details', 'Professional Details', 'Coverage Options', 'Quote Summary']; let i = index">
+    <a class="nav-link" [class.active]="step === i + 1" (click)="step = i + 1">
+      {{ i + 1 }}. {{ tab }}
+    </a>
+  </li>
+</ul>
+
+<!-- STEP 1: Customer Selection -->
+<div *ngIf="step === 1" class="card p-4 mb-4 shadow-sm">
+  <h4 class="text-primary fw-bold mb-3">Customer Selection</h4>
+  <p class="mb-3">Is this quote for an existing customer or a new one?</p>
+
+  <div class="d-flex gap-3">
+    <button class="btn btn-outline-primary" (click)="handleCustomerSelection(true)">
+      Yes, Existing Customer
+    </button>
+    <button class="btn btn-outline-secondary" (click)="handleCustomerSelection(false)">
+      No, New Customer
+    </button>
+  </div>
+</div>
+
+
+<!-- STEP 2: Professional Details -->
+<div *ngIf="step === 2" [formGroup]="professional" class="card p-4 mb-4 shadow-sm">
+  <h4 class="text-primary fw-bold">Professional Information</h4>
+  <div class="row mt-3">
+    <div class="col-md-6 mb-3">
+      <label>Profession</label>
+      <select class="form-select" formControlName="professionType">
+        <option value="">Select</option>
+        <option>Doctor</option>
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Specialization</label>
+      <select class="form-select" formControlName="specialization">
+        <option value="">Select</option>
+        <option>Primary Care Physicians</option>
+        <option>Specialists</option>
+        <option>Diagnostic & Therapeutic Professionals</option>
+        <option>Surgeons</option>
+        <option>Emergency & Critical Care Physicians</option>
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Experience (years)</label>
+      <input type="text" class="form-control" formControlName="experience">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Qualification</label>
+      <select class="form-select" formControlName="qualification">
+        <option>MBBS</option>
+        <option>MD</option>
+        <option>MS</option>
+        <option>DM/MCh</option>
+        <option>Diploma</option>
+        <option>Trainee</option>
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Qualification Year</label>
+      <input type="text" class="form-control" formControlName="qualificationYear">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Registration Number</label>
+      <input type="text" class="form-control" formControlName="registrationNumber">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Year of Registration</label>
+      <input type="text" class="form-control" formControlName="registrationYear">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Type of Practice</label>
+      <select class="form-select" formControlName="practiceType">
+        <option>Independent Practitioner</option>
+        <option>Clinic</option>
+        <option>Hospital-Employed Doctor</option>
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Location</label>
+      <select class="form-select" formControlName="state">
+        <option>Urban</option>
+        <option>Semi-Urban</option>
+        <option>Rural</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: Coverage -->
+<div *ngIf="step === 3" [formGroup]="coverage" class="card p-4 mb-4 shadow-sm">
+  <h4 class="text-primary fw-bold mb-3">Coverage Options</h4>
+  <div class="col-md-6 mb-3">
+    <label>AOY (Any One Year Limit)</label>
+    <select class="form-select" formControlName="aoy">
+      <option>₹10,00,000</option>
+      <option>₹20,00,000</option>
+      <option>₹50,00,000</option>
+    </select>
+  </div>
+  <div class="col-md-6 mb-3">
+    <label>AOA (Any One Accident) - % of AOY</label>
+    <select class="form-select" formControlName="aoa">
+      <option>25%</option>
+      <option>50%</option>
+      <option>100%</option>
+    </select>
+  </div>
+
+  <h4 class="text-primary fw-bold mb-3">Coverage Add-ons</h4>
+  <div *ngFor="let option of [
+    {key:'bodilyInjury', label:'Bodily Injury (Required)', required: true},
+    {key:'negligence', label:'Negligence'},
+    {key:'legalDefense', label:'Legal Defense Cost'},
+    {key:'confidentialityBreach', label:'Confidentiality Breach'},
+    {key:'employeeDishonesty', label:'Employee Dishonesty'},
+    {key:'lossOfDocuments', label:'Loss of Documents'}
+  ]" class="form-check mb-2">
+    <input type="checkbox" class="form-check-input" [id]="option.key" [formControlName]="option.key">
+    <label class="form-check-label" [for]="option.key">{{ option.label }}</label>
+    <div *ngIf="option.required && coverage.get(option.key)?.touched && coverage.get(option.key)?.invalid" class="text-danger small">
+      This option is mandatory.
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: Quote Summary -->
+<div *ngIf="step === 4" class="card p-4 shadow-sm mb-4">
+  <h4 class="text-primary mb-3 fw-bold">Quote Summary</h4>
+
+  <!-- Personal Details -->
+  <!-- <div class="mb-3">
+    <h5 class="text-secondary">Personal Details</h5>
+    <p><strong>First Name:</strong> {{ personal.value.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ personal.value.lastName }}</p>
+    <p><strong>Email:</strong> {{ personal.value.email }}</p>
+    <p><strong>Phone:</strong> {{ personal.value.phone }}</p>
+    <p><strong>Date of Birth:</strong> {{ personal.value.dob }}</p>
+    <p><strong>PAN:</strong> {{ personal.value.pan }}</p>
+    <p><strong>Aadhar:</strong> {{ personal.value.aadhar }}</p>
+    <p><strong>Address:</strong> {{ personal.value.address }}</p>
+    <p><strong>City:</strong> {{ personal.value.city }}</p>
+    <p><strong>Pin Code:</strong> {{ personal.value.pin }}</p>
+  </div> -->
+
+  <!-- <div class="mb-3">
+    <h5 class="text-secondary">Customer Details</h5>
+    <p><strong>Customer Name:</strong> {{ selectedCustomer?.firstName }} {{ selectedCustomer?.lastName }}</p>
+    <p><strong>Email:</strong> {{ selectedCustomer?.email }}</p>
+    <p><strong>Phone:</strong> {{ selectedCustomer?.phone }}</p>
+    <p><strong>City:</strong> {{ selectedCustomer?.city }}</p>
+  </div> -->
+
+  <!-- Professional Details -->
+  <div class="mb-3">
+    <h5 class="text-secondary">Professional Details</h5>
+    <p><strong>Profession Type:</strong> {{ professional.value.professionType }}</p>
+    <p><strong>Specialization:</strong> {{ professional.value.specialization }}</p>
+    <p><strong>Experience:</strong> {{ professional.value.experience }}</p>
+    <p><strong>Qualification:</strong> {{ professional.value.qualification }}</p>
+    <p><strong>Qualification Year:</strong> {{ professional.value.qualificationYear }}</p>
+    <p><strong>Registration No:</strong> {{ professional.value.registrationNumber }}</p>
+    <p><strong>Registration Year:</strong> {{ professional.value.registrationYear }}</p>
+    <p><strong>Practice Type:</strong> {{ professional.value.practiceType }}</p>
+    <p><strong>Location:</strong> {{ professional.value.state }}</p>
+  </div>
+
+  <!-- Coverage -->
+  <div class="mb-3">
+    <h5 class="text-secondary">Coverage Details</h5>
+    <p><strong>AOY:</strong> {{ coverage.value.aoy }}</p>
+    <p><strong>AOA:</strong> {{ coverage.value.aoa }}</p>
+    <ul>
+      <li *ngIf="coverage.value.bodilyInjury">Bodily Injury</li>
+      <li *ngIf="coverage.value.negligence">Negligence</li>
+      <li *ngIf="coverage.value.legalDefense">Legal Defense Cost</li>
+      <li *ngIf="coverage.value.confidentialityBreach">Confidentiality Breach</li>
+      <li *ngIf="coverage.value.employeeDishonesty">Employee Dishonesty</li>
+      <li *ngIf="coverage.value.lossOfDocuments">Loss of Documents</li>
+    </ul>
+  </div>
+
+  <div class="text-end mt-4">
+    <button class="btn btn-success" (click)="onSubmitQuote()">Submit Quote</button>
+  </div>
+</div>
+
+<!-- Show only after final submit -->
+<div *ngIf="showQuoteSummaryCard" class="summary-card-container">
+  <div class="summary-card">
+    <div class="summary-header">
+      <div>
+        <h5>Medical Quote Summary</h5>
+        <p>Professional Liability Coverage</p>
+      </div>
+      <div class="quote-id">Q-{{ today | date:'yyyyMMdd' }}-001</div>
+    </div>
+
+    <div class="summary-body">
+      <div class="total-premium">
+        <p>Total Premium</p>
+        <h2>₹{{ coverage.get('premium')?.value || '8,500' }}</h2>
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-label">Profession Type</div>
+        <div class="summary-value">{{ professional.get('professionType')?.value }}</div>
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-label">Coverage Amount</div>
+        <div class="summary-value">₹{{ coverage.get('aoy')?.value }}</div>
+      </div>
+
+      <div class="summary-row policy-dates">
+        <div>
+          <div class="summary-label">AOA %</div>
+          <div class="summary-value">{{ coverage.get('aoa')?.value }}</div>
+        </div>
+        <div>
+          <div class="summary-label">Policy Dates</div>
+          <div class="summary-value">1 Year From Now</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="save-btn">
+      <i class="bi bi-save me-2"></i> Save Quote
+    </button>
+  </div>
+</div>
+
+<!-- Navigation Buttons -->
+<div class="d-flex justify-content-between">
+  <button class="btn btn-outline-secondary" (click)="prevStep()" [disabled]="step === 1">Previous</button>
+  <div>
+    <button class="btn btn-outline-primary me-2">Save Draft</button>
+    <button class="btn btn-primary" (click)="nextStep()" *ngIf="step < 4">
+      Next: {{ ['Professional Details', 'Coverage Options', 'Quote Summary'][step - 1] }}
+    </button>
+  </div>
+</div>
+
+  
+  
